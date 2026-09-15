@@ -1,0 +1,151 @@
+name: Archive Platform Text Fabric organs
+
+on:
+  push:
+    branches:
+      - chatgpt/platform-text-organ-archive
+    paths:
+      - .github/workflows/archive-platform-text-organs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Organ Archive
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out pinned Platform donor
+        uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-collaboration-platform
+          ref: 27757ace6133b243a200b0463e427c8b04d5a8e3
+          path: _platform
+          persist-credentials: false
+
+      - name: Verify donor revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="27757ace6133b243a200b0463e427c8b04d5a8e3"
+          observed="$(git -C _platform rev-parse HEAD)"
+          test "$observed" = "$expected" || { echo "SOURCE_MOVED expected=$expected observed=$observed"; exit 1; }
+
+      - name: Preserve complete donor organ package
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="archive/communication-interface/platform-text-fabric/27757ace6133b243a200b0463e427c8b04d5a8e3"
+          rm -rf "$root"
+          mkdir -p "$root/body/runtime/docs"
+          rsync -a _platform/tools/text-fabric/runtime/organs/ "$root/body/runtime/organs/"
+          cp _platform/tools/text-fabric/runtime/docs/ORGAN_MAP.md "$root/body/runtime/docs/ORGAN_MAP.md"
+          cp _platform/tools/text-fabric/runtime/README.md "$root/body/runtime/README.md"
+          cp _platform/tools/text-fabric/runtime/PROVENANCE.md "$root/body/runtime/PROVENANCE.md"
+          cp _platform/tools/text-fabric/runtime/BUILD_VALIDATION_REPORT.md "$root/body/runtime/BUILD_VALIDATION_REPORT.md"
+
+      - name: Verify body and write archive metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+
+          commit='27757ace6133b243a200b0463e427c8b04d5a8e3'
+          source=Path('_platform/tools/text-fabric/runtime')
+          root=Path('archive/communication-interface/platform-text-fabric')/commit
+          body=root/'body/runtime'
+          rels=[]
+          for src in sorted((source/'organs').rglob('*')):
+              if src.is_file(): rels.append(src.relative_to(source))
+          rels += [Path('docs/ORGAN_MAP.md'),Path('README.md'),Path('PROVENANCE.md'),Path('BUILD_VALIDATION_REPORT.md')]
+
+          manifest=[]
+          for rel in sorted(set(rels), key=lambda p:p.as_posix()):
+              src=source/rel; dst=body/rel
+              if not dst.is_file(): raise SystemExit(f'MISSING_ARCHIVE_BODY:{rel.as_posix()}')
+              a=src.read_bytes(); b=dst.read_bytes()
+              if a != b: raise SystemExit(f'ARCHIVE_BYTE_MISMATCH:{rel.as_posix()}')
+              manifest.append({'path':('body/runtime/'+rel.as_posix()),'source_path':('tools/text-fabric/runtime/'+rel.as_posix()),'bytes':len(a),'sha256':hashlib.sha256(a).hexdigest()})
+
+          organs=[]; identities=set()
+          for path in sorted((body/'organs').glob('*.json')):
+              data=json.loads(path.read_text())
+              oid=data.get('id'); version=data.get('version')
+              if not oid or not version: raise SystemExit(f'INVALID_ORGAN_DESCRIPTOR:{path.name}')
+              key=(oid,version)
+              if key in identities: raise SystemExit(f'DUPLICATE_ID_VERSION:{oid}@{version}')
+              identities.add(key)
+              organs.append({'file':path.name,'id':oid,'version':version,'status':data.get('status','unspecified')})
+          if len(organs) < 10: raise SystemExit(f'ARCHIVE_FAMILY_TOO_SMALL:{len(organs)}')
+
+          digest=hashlib.sha256(''.join(f"{r['path']}\0{r['bytes']}\0{r['sha256']}\n" for r in manifest).encode()).hexdigest()
+          (root/'MANIFEST.json').write_text(json.dumps({'schema':'axm.organ-archive.manifest/v1','aggregate_sha256':digest,'files':manifest},indent=2,sort_keys=True)+'\n')
+          entry={
+              'schema':'axm.organ-archive.entry/v1',
+              'archive_id':'platform-text-fabric@'+commit,
+              'source_repository':'mike-axiom-mir/axm-collaboration-platform',
+              'source_commit':commit,
+              'source_root':'tools/text-fabric/runtime',
+              'primary_category':'communication-interface',
+              'secondary_tags':['creation-design','truth-verification','accessibility','typography','deterministic-descriptors'],
+              'status':'historical-snapshot',
+              'body_kind':'source-preserved organ descriptor family with donor map/provenance/validation context',
+              'organ_descriptor_count':len(organs),
+              'copy_verified_byte_exact':True,
+              'aggregate_manifest_sha256':digest,
+              'authority_change':False,
+              'canon_promotion':False,
+              'verification_ceiling':'exact archive recoverability and descriptor identity only; independent execution is not claimed',
+              'organs':organs,
+          }
+          (root/'ARCHIVE_ENTRY.json').write_text(json.dumps(entry,indent=2,sort_keys=True)+'\n')
+          PY
+
+          cat > archive/communication-interface/platform-text-fabric/27757ace6133b243a200b0463e427c8b04d5a8e3/README.md <<'EOF'
+          # Archived Platform Text Fabric organ family
+
+          This directory preserves the committed donor organ package at one exact Collaboration Platform revision. `body/` is source-preserved; `ARCHIVE_ENTRY.json` and `MANIFEST.json` are archive metadata added by this repository.
+
+          Archive inclusion preserves history. It does not promote the organs to CANON, rewrite their donor status, or claim they are independently executable outside their original host.
+          EOF
+
+      - name: Validate manifest against archived bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          root=Path('archive/communication-interface/platform-text-fabric/27757ace6133b243a200b0463e427c8b04d5a8e3')
+          manifest=json.loads((root/'MANIFEST.json').read_text())
+          for row in manifest['files']:
+              p=root/row['path']
+              if not p.is_file(): raise SystemExit(f'MISSING:{p}')
+              b=p.read_bytes()
+              if len(b)!=row['bytes'] or hashlib.sha256(b).hexdigest()!=row['sha256']:
+                  raise SystemExit(f'INTEGRITY_FAIL:{p}')
+          entry=json.loads((root/'ARCHIVE_ENTRY.json').read_text())
+          if entry['organ_descriptor_count'] < 10: raise SystemExit('organ descriptor count invalid')
+          print('ARCHIVE_OK files=%d organs=%d' % (len(manifest['files']), entry['organ_descriptor_count']))
+          PY
+
+      - name: Commit archive snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _platform
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/communication-interface/platform-text-fabric
+          if git diff --cached --quiet; then
+            echo "No archive changes"
+            exit 0
+          fi
+          git commit -m "Archive Platform Text Fabric organ family"
+          git push origin HEAD:${GITHUB_REF_NAME}

@@ -1,0 +1,148 @@
+name: Archive Universal Creation organ body
+
+on:
+  push:
+    branches:
+      - chatgpt/platform-text-organ-archive
+    paths:
+      - .github/workflows/archive-uc-organ-body.yml
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Organ Archive
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out pinned Universal Creation donor
+        uses: actions/checkout@v4
+        with:
+          repository: mike-axiom-mir/axm-universal-creation
+          ref: 90148a8cde5349bb4b3801b3256859a631fbf9a6
+          path: _uc
+          persist-credentials: false
+
+      - name: Verify donor revision and preserve body
+        shell: bash
+        run: |
+          set -euo pipefail
+          commit="90148a8cde5349bb4b3801b3256859a631fbf9a6"
+          observed="$(git -C _uc rev-parse HEAD)"
+          test "$observed" = "$commit" || { echo "SOURCE_MOVED expected=$commit observed=$observed"; exit 1; }
+          root="archive/creation-design/universal-creation-organs/$commit"
+          rm -rf "$root"
+          mkdir -p "$root/body"
+          rsync -a _uc/organs/ "$root/body/organs/"
+          rsync -a _uc/executable-organs/ "$root/body/executable-organs/"
+          cp _uc/EXECUTABLE_ORGANS.md "$root/body/EXECUTABLE_ORGANS.md"
+          cp _uc/ORGAN_ASSEMBLY.md "$root/body/ORGAN_ASSEMBLY.md"
+          cp _uc/ORGAN_MATERIALIZATION.md "$root/body/ORGAN_MATERIALIZATION.md"
+
+      - name: Verify body and write immutable archive evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          commit='90148a8cde5349bb4b3801b3256859a631fbf9a6'
+          donor=Path('_uc')
+          root=Path('archive/creation-design/universal-creation-organs')/commit
+          body=root/'body'
+          rels=[]
+          for d in ['organs','executable-organs']:
+              for p in sorted((donor/d).rglob('*')):
+                  if p.is_file(): rels.append(p.relative_to(donor))
+          rels += [Path('EXECUTABLE_ORGANS.md'),Path('ORGAN_ASSEMBLY.md'),Path('ORGAN_MATERIALIZATION.md')]
+          manifest=[]
+          for rel in sorted(set(rels), key=lambda p:p.as_posix()):
+              src=donor/rel; dst=body/rel
+              if not dst.is_file(): raise SystemExit(f'MISSING_ARCHIVE_BODY:{rel.as_posix()}')
+              a=src.read_bytes(); b=dst.read_bytes()
+              if a != b: raise SystemExit(f'ARCHIVE_BYTE_MISMATCH:{rel.as_posix()}')
+              manifest.append({'path':('body/'+rel.as_posix()),'source_path':rel.as_posix(),'bytes':len(a),'sha256':hashlib.sha256(a).hexdigest()})
+
+          anatomy=[]; seen=set()
+          for p in sorted((body/'organs').glob('*.json')):
+              d=json.loads(p.read_text()); oid=d.get('id')
+              if not oid or oid in seen: raise SystemExit(f'INVALID_OR_DUPLICATE_ANATOMY:{p.name}')
+              seen.add(oid); anatomy.append({'file':p.name,'id':oid,'status':d.get('status','unspecified')})
+          executable=[]; refs=set()
+          for p in sorted((body/'executable-organs').glob('*.json')):
+              d=json.loads(p.read_text()); oid=d.get('id'); version=d.get('version')
+              if not oid or not version: raise SystemExit(f'INVALID_EXECUTABLE:{p.name}')
+              ref=f'{oid}@{version}'
+              if ref in refs: raise SystemExit(f'DUPLICATE_EXECUTABLE:{ref}')
+              refs.add(ref); executable.append({'file':p.name,'id':oid,'version':version,'ref':ref,'status':d.get('status','unspecified'),'schema':d.get('schema')})
+          if len(anatomy)!=415: raise SystemExit(f'ANATOMY_COUNT_DRIFT:{len(anatomy)}')
+          if len(executable)!=15: raise SystemExit(f'EXECUTABLE_COUNT_DRIFT:{len(executable)}')
+
+          digest=hashlib.sha256(''.join(f"{r['path']}\0{r['bytes']}\0{r['sha256']}\n" for r in manifest).encode()).hexdigest()
+          (root/'MANIFEST.json').write_text(json.dumps({'schema':'axm.organ-archive.manifest/v1','aggregate_sha256':digest,'files':manifest},indent=2,sort_keys=True)+'\n')
+          entry={
+              'schema':'axm.organ-archive.entry/v1',
+              'archive_id':'universal-creation-organs@'+commit,
+              'source_repository':'mike-axiom-mir/axm-universal-creation',
+              'source_commit':commit,
+              'source_roots':['organs','executable-organs'],
+              'primary_category':'creation-design',
+              'secondary_tags':['software-engineering','reasoning-planning','truth-verification','reusable-organs','executable-packages'],
+              'status':'historical-snapshot',
+              'descriptive_organ_count':len(anatomy),
+              'executable_organ_count':len(executable),
+              'copy_verified_byte_exact':True,
+              'aggregate_manifest_sha256':digest,
+              'authority_change':False,
+              'canon_promotion':False,
+              'verification_ceiling':'source recovery, exact identity census and byte integrity; preserves donor distinction between descriptive anatomy and executable packages',
+              'executable_refs':[o['ref'] for o in executable],
+          }
+          (root/'ARCHIVE_ENTRY.json').write_text(json.dumps(entry,indent=2,sort_keys=True)+'\n')
+          PY
+
+          cat > archive/creation-design/universal-creation-organs/90148a8cde5349bb4b3801b3256859a631fbf9a6/README.md <<'EOF'
+          # Archived Universal Creation organ body
+
+          Exact snapshot of Universal Creation's `organs/` descriptive anatomy body and `executable-organs/` installed source-package body at the pinned donor commit.
+
+          The archive preserves the donor distinction: descriptive anatomy is not silently promoted to implementation. Archive metadata is additive; `body/` is source-preserved.
+          EOF
+
+      - name: Validate archive manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          root=Path('archive/creation-design/universal-creation-organs/90148a8cde5349bb4b3801b3256859a631fbf9a6')
+          manifest=json.loads((root/'MANIFEST.json').read_text())
+          for row in manifest['files']:
+              p=root/row['path']; b=p.read_bytes()
+              if len(b)!=row['bytes'] or hashlib.sha256(b).hexdigest()!=row['sha256']:
+                  raise SystemExit(f'INTEGRITY_FAIL:{p}')
+          entry=json.loads((root/'ARCHIVE_ENTRY.json').read_text())
+          if entry['descriptive_organ_count']!=415 or entry['executable_organ_count']!=15:
+              raise SystemExit('archive census mismatch')
+          print('UC_ORGAN_ARCHIVE_OK files=%d descriptive=415 executable=15' % len(manifest['files']))
+          PY
+
+      - name: Commit archive snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _uc
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/creation-design/universal-creation-organs
+          if git diff --cached --quiet; then
+            echo "No archive changes"
+            exit 0
+          fi
+          git commit -m "Archive Universal Creation organ body"
+          git push origin HEAD:${GITHUB_REF_NAME}

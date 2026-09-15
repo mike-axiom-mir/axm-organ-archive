@@ -1,0 +1,43 @@
+{
+  "aggregate_manifest_sha256": "873b376248930efeafedb414af058b94d93de5358305fca7b05d8eaf1bcea339",
+  "archive_id": "universal-creation-organs@90148a8cde5349bb4b3801b3256859a631fbf9a6",
+  "authority_change": false,
+  "canon_promotion": false,
+  "copy_verified_byte_exact": true,
+  "descriptive_organ_count": 415,
+  "executable_organ_count": 15,
+  "executable_refs": [
+    "axm.foundation.canonicalization@1.0.0",
+    "axm.foundation.capability-registry@1.0.0",
+    "axm.foundation.compatibility-checker@1.0.0",
+    "axm.foundation.dependency-resolver@1.0.0",
+    "axm.foundation.extension-manager@1.0.0",
+    "axm.foundation.identity-registry@1.0.0",
+    "axm.foundation.interface-validator@1.0.0",
+    "axm.foundation.metadata-manager@1.0.0",
+    "axm.foundation.migration-manager@1.0.0",
+    "axm.foundation.relationship-graph@1.0.0",
+    "axm.foundation.schema-registry@1.0.0",
+    "axm.foundation.version-manager@1.0.0",
+    "axm.web.interaction@1.0.0",
+    "axm.web.shell@1.0.0",
+    "axm.web.theme@1.0.0"
+  ],
+  "primary_category": "creation-design",
+  "schema": "axm.organ-archive.entry/v1",
+  "secondary_tags": [
+    "software-engineering",
+    "reasoning-planning",
+    "truth-verification",
+    "reusable-organs",
+    "executable-packages"
+  ],
+  "source_commit": "90148a8cde5349bb4b3801b3256859a631fbf9a6",
+  "source_repository": "mike-axiom-mir/axm-universal-creation",
+  "source_roots": [
+    "organs",
+    "executable-organs"
+  ],
+  "status": "historical-snapshot",
+  "verification_ceiling": "source recovery, exact identity census and byte integrity; preserves donor distinction between descriptive anatomy and executable packages"
+}

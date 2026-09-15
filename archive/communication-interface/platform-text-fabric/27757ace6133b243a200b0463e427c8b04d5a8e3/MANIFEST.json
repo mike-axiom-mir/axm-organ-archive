@@ -1,0 +1,210 @@
+{
+  "aggregate_sha256": "d994b64d1f99b202fba0a1deab598f79faf6187aaeaa73c1620e662d5f0ade02",
+  "files": [
+    {
+      "bytes": 2449,
+      "path": "body/runtime/BUILD_VALIDATION_REPORT.md",
+      "sha256": "8539051d1c153a266b10dfa524a5b6c49896de4fe3975a5cf796b4869891dd1e",
+      "source_path": "tools/text-fabric/runtime/BUILD_VALIDATION_REPORT.md"
+    },
+    {
+      "bytes": 3891,
+      "path": "body/runtime/PROVENANCE.md",
+      "sha256": "03252fc0661d1d963392f6eafbfc847a84e5ffc340b70a628096fda918ebabf1",
+      "source_path": "tools/text-fabric/runtime/PROVENANCE.md"
+    },
+    {
+      "bytes": 2371,
+      "path": "body/runtime/README.md",
+      "sha256": "e5c56e6dd5d7ff47e256a045faffc94ad491499a1c2fa3c445c01b30e6a8bcdf",
+      "source_path": "tools/text-fabric/runtime/README.md"
+    },
+    {
+      "bytes": 2804,
+      "path": "body/runtime/docs/ORGAN_MAP.md",
+      "sha256": "9b2c97ddd51f488c8e39e79680a190c2b233efb94381173cb2a253b405f1d67f",
+      "source_path": "tools/text-fabric/runtime/docs/ORGAN_MAP.md"
+    },
+    {
+      "bytes": 547,
+      "path": "body/runtime/organs/01_typography_role_organ.json",
+      "sha256": "acb95fd7bcd71b9af8234232cd91d665862b86e5a7fbbfdab7eb8f8c9ca40cb4",
+      "source_path": "tools/text-fabric/runtime/organs/01_typography_role_organ.json"
+    },
+    {
+      "bytes": 539,
+      "path": "body/runtime/organs/02_responsive_scale_organ.json",
+      "sha256": "b536682e22392438cd77652e9df6edcf0f3e8255bad0142e35a21f0b4630f500",
+      "source_path": "tools/text-fabric/runtime/organs/02_responsive_scale_organ.json"
+    },
+    {
+      "bytes": 560,
+      "path": "body/runtime/organs/03_contrast_guardian_organ.json",
+      "sha256": "5d106f81f7c620183a4b511fe70885d4093b1a84ebff1fc08d74728422c84faa",
+      "source_path": "tools/text-fabric/runtime/organs/03_contrast_guardian_organ.json"
+    },
+    {
+      "bytes": 569,
+      "path": "body/runtime/organs/04_background_separation_organ.json",
+      "sha256": "670c1ac441295329a4a4bdc6c2fe281d79205a0f2bb9c32c65bdefbeeb781e53",
+      "source_path": "tools/text-fabric/runtime/organs/04_background_separation_organ.json"
+    },
+    {
+      "bytes": 551,
+      "path": "body/runtime/organs/05_effect_stack_organ.json",
+      "sha256": "52e3a5aec0ddc6e41b723e5c6f6dbba103b7f083497446dbb2960476f70e6b5e",
+      "source_path": "tools/text-fabric/runtime/organs/05_effect_stack_organ.json"
+    },
+    {
+      "bytes": 542,
+      "path": "body/runtime/organs/06_rendering_strategy_organ.json",
+      "sha256": "b2258c3eea0026650f7746a13362bead4139afcc4505355f53b20acb710bc50a",
+      "source_path": "tools/text-fabric/runtime/organs/06_rendering_strategy_organ.json"
+    },
+    {
+      "bytes": 563,
+      "path": "body/runtime/organs/07_localization_fallback_organ.json",
+      "sha256": "e6695cb123b097fa4ffef833405a36b784ea1a6ba38342bf1299617badfa9a8d",
+      "source_path": "tools/text-fabric/runtime/organs/07_localization_fallback_organ.json"
+    },
+    {
+      "bytes": 530,
+      "path": "body/runtime/organs/08_motion_safety_organ.json",
+      "sha256": "75e595fd4c83ed21775b9f97e657db9759ef04699bfa6017f8ea4e4b8d46677e",
+      "source_path": "tools/text-fabric/runtime/organs/08_motion_safety_organ.json"
+    },
+    {
+      "bytes": 519,
+      "path": "body/runtime/organs/09_data_typography_organ.json",
+      "sha256": "09892603fb95dcfb264b42b6b60620cedaf94dd030349ceab6994460a64ab00b",
+      "source_path": "tools/text-fabric/runtime/organs/09_data_typography_organ.json"
+    },
+    {
+      "bytes": 560,
+      "path": "body/runtime/organs/10_qa_regression_organ.json",
+      "sha256": "e736da7c5a84f0f1c013aba9f27a94cec3bcfd9d90e15ea8dbed741b9e9b30cb",
+      "source_path": "tools/text-fabric/runtime/organs/10_qa_regression_organ.json"
+    },
+    {
+      "bytes": 544,
+      "path": "body/runtime/organs/11_copy_readability_organ.json",
+      "sha256": "b71105ae876db5436d39ef4e22c24b138f2534fe10bf00351d1ed26ff8a3c805",
+      "source_path": "tools/text-fabric/runtime/organs/11_copy_readability_organ.json"
+    },
+    {
+      "bytes": 554,
+      "path": "body/runtime/organs/12_platform_adapter_router_organ.json",
+      "sha256": "8bb298748e206b4d039b872ba11c01c05533696b0c5ebfc20233e930ec70adfc",
+      "source_path": "tools/text-fabric/runtime/organs/12_platform_adapter_router_organ.json"
+    },
+    {
+      "bytes": 713,
+      "path": "body/runtime/organs/13_material_finish_organ.json",
+      "sha256": "82029bd591ea628bd181420249877a139acf3288100082262318332d00778dd2",
+      "source_path": "tools/text-fabric/runtime/organs/13_material_finish_organ.json"
+    },
+    {
+      "bytes": 625,
+      "path": "body/runtime/organs/14_sheen_highlight_organ.json",
+      "sha256": "eb3370fc9f6a89d2ced65510c58e302518c17d5cc81531ccfa794a1c65f87224",
+      "source_path": "tools/text-fabric/runtime/organs/14_sheen_highlight_organ.json"
+    },
+    {
+      "bytes": 836,
+      "path": "body/runtime/organs/15_glitch_safety_organ.json",
+      "sha256": "7c084184d17563b421b6978a10d7b0228bd9fa171f47aa47fadd662e9eac78c8",
+      "source_path": "tools/text-fabric/runtime/organs/15_glitch_safety_organ.json"
+    },
+    {
+      "bytes": 764,
+      "path": "body/runtime/organs/16_shader_routing_organ.json",
+      "sha256": "9100c76389e677c9d74ec0d1c726c4be85ee409574a97166746dd720bf4ed5d4",
+      "source_path": "tools/text-fabric/runtime/organs/16_shader_routing_organ.json"
+    },
+    {
+      "bytes": 784,
+      "path": "body/runtime/organs/17_preset_gallery_organ.json",
+      "sha256": "65612e96363a7b3040d52c7d64dcf411c8f76dbdbc53e772d1ba98dd3222f131",
+      "source_path": "tools/text-fabric/runtime/organs/17_preset_gallery_organ.json"
+    },
+    {
+      "bytes": 710,
+      "path": "body/runtime/organs/18_render_cost_budget_organ.json",
+      "sha256": "d8ae7313452d046c91b08e29caf2c1398fdaf7360d8e3b86f353c3b4cd20732a",
+      "source_path": "tools/text-fabric/runtime/organs/18_render_cost_budget_organ.json"
+    },
+    {
+      "bytes": 624,
+      "path": "body/runtime/organs/19_preset_workshop_organ.json",
+      "sha256": "922a89fcba2fdfe93ff1d688a6ff5dc10b3f6bfdb3b4ab199e05d1bb824d5d03",
+      "source_path": "tools/text-fabric/runtime/organs/19_preset_workshop_organ.json"
+    },
+    {
+      "bytes": 747,
+      "path": "body/runtime/organs/20_bundle_integrity_rollback_organ.json",
+      "sha256": "d0922544563c19d38034007828580131605333c29fa546f0d4eda14d25182697",
+      "source_path": "tools/text-fabric/runtime/organs/20_bundle_integrity_rollback_organ.json"
+    },
+    {
+      "bytes": 730,
+      "path": "body/runtime/organs/21_batch_library_compiler_organ.json",
+      "sha256": "584ca63d86eec958b02acad072d59fd89345953588cf0152c819d5507ea5ee71",
+      "source_path": "tools/text-fabric/runtime/organs/21_batch_library_compiler_organ.json"
+    },
+    {
+      "bytes": 794,
+      "path": "body/runtime/organs/22_glyph_fallback_audit_organ.json",
+      "sha256": "15dee828e58176e1051462bb68f7beca732167dcf88c9bea38db96f1db6e0578",
+      "source_path": "tools/text-fabric/runtime/organs/22_glyph_fallback_audit_organ.json"
+    },
+    {
+      "bytes": 730,
+      "path": "body/runtime/organs/23_static_asset_fallback_organ.json",
+      "sha256": "1a43408b4187a3062e98944d425a4bfbe855bfd302d8eef9075ec4551480c85a",
+      "source_path": "tools/text-fabric/runtime/organs/23_static_asset_fallback_organ.json"
+    },
+    {
+      "bytes": 778,
+      "path": "body/runtime/organs/24_visual_qa_matrix_organ.json",
+      "sha256": "b268dcaefed64d57741d27eece4e4dae734ad7c773160e230025c76587d59f89",
+      "source_path": "tools/text-fabric/runtime/organs/24_visual_qa_matrix_organ.json"
+    },
+    {
+      "bytes": 700,
+      "path": "body/runtime/organs/25_actual_font_coverage_organ.json",
+      "sha256": "d34a86fba8b6d3a24f0c8cd4823c2074a7d15741ca63508eb098ff75656373fd",
+      "source_path": "tools/text-fabric/runtime/organs/25_actual_font_coverage_organ.json"
+    },
+    {
+      "bytes": 651,
+      "path": "body/runtime/organs/26_font_capability_registry_organ.json",
+      "sha256": "f15e3b5482917ccb0f2c714477c8046aa4c31a0b64bfaaea5814c3e14f615408",
+      "source_path": "tools/text-fabric/runtime/organs/26_font_capability_registry_organ.json"
+    },
+    {
+      "bytes": 573,
+      "path": "body/runtime/organs/27_font_fallback_planner_organ.json",
+      "sha256": "3b41e0b5eaacee15417c7158fb52401c39ba101ce2aca532fba526ab476df21f",
+      "source_path": "tools/text-fabric/runtime/organs/27_font_fallback_planner_organ.json"
+    },
+    {
+      "bytes": 765,
+      "path": "body/runtime/organs/28_layout_resilience_organ.json",
+      "sha256": "bb5d257cedc013e5c5a21ad23f5b2a163a2eda7354987dc7b2fc81d60ca525db",
+      "source_path": "tools/text-fabric/runtime/organs/28_layout_resilience_organ.json"
+    },
+    {
+      "bytes": 632,
+      "path": "body/runtime/organs/29_pseudolocalization_stress_organ.json",
+      "sha256": "faf2d589be193e48662a5b2ebff7084e0df336c3f6a64e264f42f7dc58e65c3c",
+      "source_path": "tools/text-fabric/runtime/organs/29_pseudolocalization_stress_organ.json"
+    },
+    {
+      "bytes": 666,
+      "path": "body/runtime/organs/30_safe_area_viewing_distance_organ.json",
+      "sha256": "034ed77fbb290d9fc9a75bd65cb3cff2fa449910f8cd62ef12985c650c9167fe",
+      "source_path": "tools/text-fabric/runtime/organs/30_safe_area_viewing_distance_organ.json"
+    }
+  ],
+  "schema": "axm.organ-archive.manifest/v1"
+}

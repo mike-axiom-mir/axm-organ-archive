@@ -25,6 +25,20 @@ Where applicable, an archived organ entry should retain:
 
 Do not silently rewrite archived bodies to modernize them. A repaired or evolved organ should be archived as a new version while preserving the earlier body when continuity matters.
 
+## Current verified snapshots
+
+### Universal Creation organ body
+
+`archive/creation-design/universal-creation-organs/90148a8cde5349bb4b3801b3256859a631fbf9a6/` preserves the donor's complete **415 descriptive organ records + 15 installed executable organ packages**, together with the donor documentation that explains their distinction and assembly/materialization boundary.
+
+Every preserved donor file is byte-checked and listed in `MANIFEST.json`; `ARCHIVE_ENTRY.json` records the exact donor commit, aggregate digest, counts, executable `id@version` refs, category/tags, and the donor verification ceiling. The snapshot is historical preservation, not CANON promotion.
+
+### Collaboration Platform Text Fabric organ family
+
+`archive/communication-interface/platform-text-fabric/27757ace6133b243a200b0463e427c8b04d5a8e3/` preserves the committed Text Fabric organ descriptor family plus its donor organ map, provenance and build-validation context.
+
+The archive keeps that donor family as it actually existed. It does not reconstruct missing runtime behavior or claim an independent execution body that the source did not prove at this boundary.
+
 ## Categorization
 
 Every organ gets one primary category for navigation and may carry multiple secondary tags. Initial categories are:

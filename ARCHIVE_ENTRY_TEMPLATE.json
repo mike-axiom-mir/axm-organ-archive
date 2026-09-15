@@ -1,0 +1,38 @@
+{
+  "schema": "axm.organ-archive-entry/v1",
+  "organ_id": "replace-with-organ-id",
+  "organ_version": "replace-with-version-or-snapshot-id",
+  "primary_category": "experimental-unclassified",
+  "secondary_tags": [],
+  "status": "unknown",
+  "source": {
+    "repository": "",
+    "path": "",
+    "commit": "",
+    "source_version": ""
+  },
+  "archive": {
+    "full_body_preserved": false,
+    "body_path": "body/",
+    "tests_preserved": false,
+    "docs_preserved": false,
+    "support_closure_preserved": false,
+    "silent_rewrite_performed": false
+  },
+  "integrity": {
+    "hash_algorithm": "sha256",
+    "aggregate_hash": "",
+    "verified_against_source": false
+  },
+  "dependencies": [],
+  "known_limits": [],
+  "license_provenance": {
+    "status": "unknown",
+    "notes": ""
+  },
+  "verification": {
+    "status": "unverified",
+    "evidence": []
+  },
+  "notes": "Archive inclusion preserves history; it does not promote this organ to CANON."
+}

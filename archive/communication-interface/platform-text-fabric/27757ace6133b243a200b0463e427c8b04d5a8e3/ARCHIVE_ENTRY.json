@@ -1,0 +1,205 @@
+{
+  "aggregate_manifest_sha256": "d994b64d1f99b202fba0a1deab598f79faf6187aaeaa73c1620e662d5f0ade02",
+  "archive_id": "platform-text-fabric@27757ace6133b243a200b0463e427c8b04d5a8e3",
+  "authority_change": false,
+  "body_kind": "source-preserved organ descriptor family with donor map/provenance/validation context",
+  "canon_promotion": false,
+  "copy_verified_byte_exact": true,
+  "organ_descriptor_count": 30,
+  "organs": [
+    {
+      "file": "01_typography_role_organ.json",
+      "id": "axm.text.organ.typography_role_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "02_responsive_scale_organ.json",
+      "id": "axm.text.organ.responsive_scale_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "03_contrast_guardian_organ.json",
+      "id": "axm.text.organ.contrast_guardian_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "04_background_separation_organ.json",
+      "id": "axm.text.organ.background_separation_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "05_effect_stack_organ.json",
+      "id": "axm.text.organ.effect_stack_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "06_rendering_strategy_organ.json",
+      "id": "axm.text.organ.rendering_strategy_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "07_localization_fallback_organ.json",
+      "id": "axm.text.organ.localization_fallback_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "08_motion_safety_organ.json",
+      "id": "axm.text.organ.motion_safety_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "09_data_typography_organ.json",
+      "id": "axm.text.organ.data_typography_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "10_qa_regression_organ.json",
+      "id": "axm.text.organ.qa_regression_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "11_copy_readability_organ.json",
+      "id": "axm.text.organ.copy_readability_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "12_platform_adapter_router_organ.json",
+      "id": "axm.text.organ.platform_adapter_router_organ",
+      "status": "WORKING",
+      "version": "0.1.0"
+    },
+    {
+      "file": "13_material_finish_organ.json",
+      "id": "axm.text.organ.material_finish",
+      "status": "unspecified",
+      "version": "0.2.0"
+    },
+    {
+      "file": "14_sheen_highlight_organ.json",
+      "id": "axm.text.organ.sheen_highlight",
+      "status": "unspecified",
+      "version": "0.2.0"
+    },
+    {
+      "file": "15_glitch_safety_organ.json",
+      "id": "axm.text.organ.glitch_safety",
+      "status": "unspecified",
+      "version": "0.3.0"
+    },
+    {
+      "file": "16_shader_routing_organ.json",
+      "id": "axm.text.organ.shader_routing",
+      "status": "unspecified",
+      "version": "0.4.0"
+    },
+    {
+      "file": "17_preset_gallery_organ.json",
+      "id": "axm.text.organ.preset_gallery",
+      "status": "unspecified",
+      "version": "0.5.0"
+    },
+    {
+      "file": "18_render_cost_budget_organ.json",
+      "id": "axm.text.organ.render_cost_budget",
+      "status": "unspecified",
+      "version": "0.6.0"
+    },
+    {
+      "file": "19_preset_workshop_organ.json",
+      "id": "axm.text.organ.preset_workshop",
+      "status": "unspecified",
+      "version": "0.6.0"
+    },
+    {
+      "file": "20_bundle_integrity_rollback_organ.json",
+      "id": "axm.text.organ.bundle_integrity_rollback",
+      "status": "unspecified",
+      "version": "0.7.0"
+    },
+    {
+      "file": "21_batch_library_compiler_organ.json",
+      "id": "axm.text.organ.batch_library_compiler",
+      "status": "unspecified",
+      "version": "0.7.0"
+    },
+    {
+      "file": "22_glyph_fallback_audit_organ.json",
+      "id": "axm.text.organ.glyph_fallback_audit",
+      "status": "unspecified",
+      "version": "0.7.0"
+    },
+    {
+      "file": "23_static_asset_fallback_organ.json",
+      "id": "axm.text.organ.static_asset_fallback",
+      "status": "unspecified",
+      "version": "0.8.0"
+    },
+    {
+      "file": "24_visual_qa_matrix_organ.json",
+      "id": "axm.text.organ.visual_qa_matrix",
+      "status": "unspecified",
+      "version": "0.8.0"
+    },
+    {
+      "file": "25_actual_font_coverage_organ.json",
+      "id": "axm.text.organ.actual_font_coverage",
+      "status": "unspecified",
+      "version": "0.9.0"
+    },
+    {
+      "file": "26_font_capability_registry_organ.json",
+      "id": "axm.text.organ.font_capability_registry",
+      "status": "unspecified",
+      "version": "0.9.0"
+    },
+    {
+      "file": "27_font_fallback_planner_organ.json",
+      "id": "axm.text.organ.font_fallback_planner",
+      "status": "unspecified",
+      "version": "0.9.0"
+    },
+    {
+      "file": "28_layout_resilience_organ.json",
+      "id": "axm.text.organ.layout_resilience",
+      "status": "unspecified",
+      "version": "1.0.0"
+    },
+    {
+      "file": "29_pseudolocalization_stress_organ.json",
+      "id": "axm.text.organ.pseudolocalization_stress",
+      "status": "unspecified",
+      "version": "1.0.0"
+    },
+    {
+      "file": "30_safe_area_viewing_distance_organ.json",
+      "id": "axm.text.organ.safe_area_viewing_distance",
+      "status": "unspecified",
+      "version": "1.0.0"
+    }
+  ],
+  "primary_category": "communication-interface",
+  "schema": "axm.organ-archive.entry/v1",
+  "secondary_tags": [
+    "creation-design",
+    "truth-verification",
+    "accessibility",
+    "typography",
+    "deterministic-descriptors"
+  ],
+  "source_commit": "27757ace6133b243a200b0463e427c8b04d5a8e3",
+  "source_repository": "mike-axiom-mir/axm-collaboration-platform",
+  "source_root": "tools/text-fabric/runtime",
+  "status": "historical-snapshot",
+  "verification_ceiling": "exact archive recoverability and descriptor identity only; independent execution is not claimed"
+}
